@@ -1,3 +1,5 @@
 # Vineyard Blockchain
 
-Normalizes management of different blockchains
+A universal protocol for managing blockchain
+
+Currently only exports a collection of TypeScript interfaces.
