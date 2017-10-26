@@ -2,7 +2,7 @@ import {BigNumber} from 'bignumber.js'
 
 export type Id = string
 
-export type Identity<T> = T | Id
+export type Identity<T> = Id
 
 export interface Currency {
   id: Id
@@ -28,20 +28,39 @@ export enum TransactionStatus {
   rejected,
 }
 
-export interface Transaction {
-  id: Id
+export interface BaseTransaction {
   txid: string
   to: string
   from: string
   amount: BigNumber
-  status: TransactionStatus
   timeReceived: Date
-  currency: string
   block: Identity<Block>
 }
 
-export interface ReadClient {
+export interface Transaction extends BaseTransaction {
+  id: Id
+  status: TransactionStatus
+  currency: string
+}
 
+export interface ExternalTransaction extends BaseTransaction {
+  confirmations: number
+}
+
+export interface ExternalBlock {
+  hash: string
+  index?: number
+  timeMined: Date
+}
+
+export interface FullExternalBlock extends ExternalBlock {
+  transactions: ExternalTransaction []
+}
+
+export interface ReadClient {
+  getTransaction(txid: string): Promise<ExternalTransaction>
+
+  getNextFullBlock(block: Block): Promise<FullExternalBlock>
 }
 
 export interface WriteClient {

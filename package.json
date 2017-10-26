@@ -2,8 +2,8 @@
   "name": "vineyard-blockchain",
   "version": "1.0.0-beta.1",
   "description": "A universal protocol for managing blockchains",
-  "main": "source/index.js",
-  "types": "source/index.d.ts",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
