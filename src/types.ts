@@ -22,7 +22,7 @@ export interface BaseBlock {
   timeMined: Date
 }
 
-export interface Block {
+export interface Block extends BaseBlock {
   id: Id
 }
 
