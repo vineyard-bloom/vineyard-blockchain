@@ -1,5 +1,45 @@
 {
   "Transaction": {
-
+    "properties": {
+      "status": {
+        "type": "Transaction"
+      },
+      "currency": {
+        "type": "string"
+      },
+      "txid": {
+        "type": "string"
+      },
+      "to": {
+        "type": "string"
+      },
+      "from": {
+        "type": "string"
+      }, 
+      "amount": {
+        "type": "colossal" 
+      },
+      "timeReceived": {
+        "type": "datetime"
+      },
+      "block": {
+        "type": "Block"
+      }
+    }
+  },
+  "Block": {
+    "properties": {
+      
+    }
+  },
+  "Address": {
+    "properties": {
+      "address": {
+        "type": "string"
+      },
+      "currency": {
+        "type": "Currency"
+      }
+    }
   }
 }
