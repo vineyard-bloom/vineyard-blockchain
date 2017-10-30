@@ -10,16 +10,20 @@ export interface Currency {
 }
 
 export interface Address {
-  id: string
+  id: Id
+  address: string
   currency: Identity<Currency>
 }
 
-export interface Block {
-  id: Id
+export interface BaseBlock {
   hash: string
   index: number
   currency: Identity<Currency>
   timeMined: Date
+}
+
+export interface Block {
+  id: Id
 }
 
 export enum TransactionStatus {

@@ -6,15 +6,18 @@ export interface Currency {
     name: string;
 }
 export interface Address {
-    id: string;
+    id: Id;
+    address: string;
     currency: Identity<Currency>;
 }
-export interface Block {
-    id: Id;
+export interface BaseBlock {
     hash: string;
     index: number;
     currency: Identity<Currency>;
     timeMined: Date;
+}
+export interface Block {
+    id: Id;
 }
 export declare enum TransactionStatus {
     pending = 0,
