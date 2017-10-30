@@ -29,7 +29,18 @@
   },
   "Block": {
     "properties": {
-      
+      "hash": {
+        "type": "string"
+      },
+      "index": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "Currency"
+      },
+      "timeMined": {
+        "type": "datetime"
+      }
     }
   },
   "Address": {
