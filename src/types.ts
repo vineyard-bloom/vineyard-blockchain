@@ -44,11 +44,11 @@ export interface BaseTransaction {
   amount: BigNumber
   timeReceived: Date
   block: Identity<Block>
+  status: TransactionStatus
 }
 
 export interface Transaction extends BaseTransaction {
   id: Id
-  status: TransactionStatus
   currency: string
 }
 

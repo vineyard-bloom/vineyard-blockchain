@@ -1,11 +1,37 @@
 {
+  "Address": {
+    "properties": {
+      "address": {
+        "type": "string"
+      },
+      "currency": {
+        "type": "uuid"
+      }
+    }
+  },
+  "Block": {
+    "properties": {
+      "hash": {
+        "type": "string"
+      },
+      "index": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "uuid"
+      },
+      "timeMined": {
+        "type": "datetime"
+      }
+    }
+  },
   "Transaction": {
     "properties": {
       "status": {
         "type": "int"
       },
       "currency": {
-        "type": "string"
+        "type": "uuid"
       },
       "txid": {
         "type": "string"
@@ -24,32 +50,6 @@
       },
       "block": {
         "type": "Block"
-      }
-    }
-  },
-  "Block": {
-    "properties": {
-      "hash": {
-        "type": "string"
-      },
-      "index": {
-        "type": "int"
-      },
-      "currency": {
-        "type": "Currency"
-      },
-      "timeMined": {
-        "type": "datetime"
-      }
-    }
-  },
-  "Address": {
-    "properties": {
-      "address": {
-        "type": "string"
-      },
-      "currency": {
-        "type": "Currency"
       }
     }
   }
