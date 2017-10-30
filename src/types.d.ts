@@ -6,6 +6,10 @@ export interface Currency {
     name: string;
 }
 export interface Address {
+    address: string;
+    currency: Identity<Currency>;
+}
+export interface AddressRecord extends Address {
     id: Id;
     address: string;
     currency: Identity<Currency>;
@@ -16,7 +20,7 @@ export interface BaseBlock {
     currency: Identity<Currency>;
     timeMined: Date;
 }
-export interface Block {
+export interface Block extends BaseBlock {
     id: Id;
 }
 export declare enum TransactionStatus {

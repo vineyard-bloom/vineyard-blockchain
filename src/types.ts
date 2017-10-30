@@ -10,6 +10,11 @@ export interface Currency {
 }
 
 export interface Address {
+  address: string
+  currency: Identity<Currency>
+}
+
+export interface AddressRecord extends Address {
   id: Id
   address: string
   currency: Identity<Currency>
@@ -22,7 +27,7 @@ export interface BaseBlock {
   timeMined: Date
 }
 
-export interface Block {
+export interface Block extends BaseBlock {
   id: Id
 }
 
