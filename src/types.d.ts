@@ -53,7 +53,7 @@ export interface FullExternalBlock extends ExternalBlock {
     transactions: ExternalTransaction[];
 }
 export interface ReadClient {
-    getTransaction(txid: string): Promise<ExternalTransaction>;
+    getTransactionStatus(txid: string): Promise<number>;
     getNextFullBlock(block: Block): Promise<FullExternalBlock>;
 }
 export interface WriteClient {
