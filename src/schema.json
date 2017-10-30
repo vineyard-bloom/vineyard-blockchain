@@ -2,7 +2,7 @@
   "Transaction": {
     "properties": {
       "status": {
-        "type": "Transaction"
+        "type": "TransactionStatus"
       },
       "currency": {
         "type": "string"
