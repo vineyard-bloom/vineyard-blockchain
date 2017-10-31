@@ -49,12 +49,12 @@ export interface ExternalBlock {
     index?: number;
     timeMined: Date;
 }
-export interface FullExternalBlock extends ExternalBlock {
+export interface FullBlock extends ExternalBlock {
     transactions: ExternalTransaction[];
 }
 export interface ReadClient {
     getTransactionStatus(txid: string): Promise<number>;
-    getNextFullBlock(block: BlockInfo): Promise<FullExternalBlock>;
+    getNextFullBlock(block: BlockInfo): Promise<FullBlock>;
 }
 export interface WriteClient {
 }
