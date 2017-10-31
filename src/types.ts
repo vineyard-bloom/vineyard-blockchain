@@ -27,7 +27,7 @@ export interface BaseBlock {
   timeMined: Date
 }
 
-export interface Block extends BaseBlock {
+export interface BlockInfo extends BaseBlock {
   id: Id
 }
 
@@ -43,7 +43,7 @@ export interface BaseTransaction {
   from: string
   amount: BigNumber
   timeReceived: Date
-  block: Identity<Block>
+  block: Identity<BlockInfo>
   status: TransactionStatus
 }
 
@@ -69,7 +69,7 @@ export interface FullExternalBlock extends ExternalBlock {
 export interface ReadClient {
   getTransactionStatus(txid: string): Promise<number>
 
-  getNextFullBlock(block: Block): Promise<FullExternalBlock>
+  getNextFullBlock(block: BlockInfo): Promise<FullExternalBlock>
 }
 
 export interface WriteClient {
