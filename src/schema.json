@@ -31,7 +31,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       },
       "txid": {
         "type": "string"
