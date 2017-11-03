@@ -5,7 +5,7 @@
         "type": "string"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       }
     }
   },
@@ -18,7 +18,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       },
       "timeMined": {
         "type": "datetime"
