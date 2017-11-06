@@ -32,9 +32,9 @@ export interface Block extends BaseBlock {
 }
 
 export enum TransactionStatus {
-  pending,
-  accepted,
-  rejected,
+  pending = 0,
+  accepted = 1,
+  rejected = 2,
 }
 
 export interface BaseTransaction {
