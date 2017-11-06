@@ -5,12 +5,14 @@ export interface Currency {
     id: Id;
     name: string;
 }
-export interface Address {
+export interface NewAddress {
     address: string;
     currency: Identity<Currency>;
 }
-export interface AddressRecord extends Address {
+export interface Address {
     id: Id;
+}
+export interface AddressRecord extends Address {
     address: string;
     currency: Identity<Currency>;
 }
@@ -20,6 +22,7 @@ export interface BaseBlock {
     currency: Identity<Currency>;
     timeMined: Date;
 }
+export declare type NewBlock = BaseBlock;
 export interface BlockInfo extends BaseBlock {
     id: Id;
 }
