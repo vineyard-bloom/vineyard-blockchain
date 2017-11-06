@@ -14,7 +14,7 @@ export interface NewAddress {
   currency: Identity<Currency>
 }
 
-export interface Address {
+export interface Address extends NewAddress {
   id: Id
 }
 
