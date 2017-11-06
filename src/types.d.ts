@@ -9,7 +9,7 @@ export interface NewAddress {
     address: string;
     currency: Identity<Currency>;
 }
-export interface Address {
+export interface Address extends NewAddress {
     id: Id;
 }
 export interface AddressRecord extends Address {
@@ -40,6 +40,7 @@ export interface BaseTransaction {
     block: Identity<BlockInfo>;
     status: TransactionStatus;
 }
+export declare type NewTransaction = BaseTransaction;
 export interface Transaction extends BaseTransaction {
     id: Id;
     currency: string;
@@ -49,16 +50,17 @@ export interface ExternalTransaction extends BaseTransaction {
 }
 export interface ExternalBlock {
     hash: string;
-    index?: number;
+    index: number;
     timeMined: Date;
 }
 export interface FullBlock extends ExternalBlock {
     transactions: ExternalTransaction[];
 }
 export interface ReadClient {
-    getTransactionStatus(txid: string): Promise<number>;
+    getLastBlock(): Promise<BlockInfo>;
+    getTransactionStatus(txid: string): Promise<TransactionStatus>;
     getNextBlockInfo(block: BlockInfo | undefined): Promise<BlockInfo>;
-    getFullBlock(block: BlockInfo): Promise<FullBlock>;
+    getFullBlock(block: BlockInfo): Promise<FullBlock | undefined>;
 }
 export interface WriteClient {
 }

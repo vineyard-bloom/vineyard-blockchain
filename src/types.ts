@@ -52,6 +52,8 @@ export interface BaseTransaction {
   status: TransactionStatus
 }
 
+export type NewTransaction = BaseTransaction
+
 export interface Transaction extends BaseTransaction {
   id: Id
   currency: string
@@ -63,7 +65,7 @@ export interface ExternalTransaction extends BaseTransaction {
 
 export interface ExternalBlock {
   hash: string
-  index?: number
+  index: number
   timeMined: Date
 }
 
@@ -72,11 +74,13 @@ export interface FullBlock extends ExternalBlock {
 }
 
 export interface ReadClient {
-  getTransactionStatus(txid: string): Promise<number>
+  getLastBlock(): Promise<BlockInfo>
+
+  getTransactionStatus(txid: string): Promise<TransactionStatus>
 
   getNextBlockInfo(block: BlockInfo | undefined): Promise<BlockInfo>
 
-  getFullBlock(block: BlockInfo): Promise<FullBlock>
+  getFullBlock(block: BlockInfo): Promise<FullBlock | undefined>
 }
 
 export interface WriteClient {
