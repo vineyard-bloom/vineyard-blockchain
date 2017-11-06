@@ -5,11 +5,11 @@
         "type": "string"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       }
     }
   },
-  "Block": {
+  "BlockInfo": {
     "properties": {
       "hash": {
         "type": "string"
@@ -18,7 +18,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       },
       "timeMined": {
         "type": "datetime"
@@ -31,7 +31,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "uuid"
+        "type": "string"
       },
       "txid": {
         "type": "string"
@@ -49,7 +49,7 @@
         "type": "datetime"
       },
       "block": {
-        "type": "Block"
+        "type": "BlockInfo"
       }
     }
   }
