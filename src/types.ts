@@ -76,7 +76,7 @@ export interface FullBlock extends ExternalBlock {
 }
 
 export interface ReadClient {
-  getLastBlock(): Promise<BlockInfo>
+  getLastBlock(): Promise<BaseBlock>
 
   getTransactionStatus(txid: string): Promise<TransactionStatus>
 
