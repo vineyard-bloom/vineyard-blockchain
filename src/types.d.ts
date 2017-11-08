@@ -26,6 +26,7 @@ export declare type NewBlock = BaseBlock;
 export interface BlockInfo extends BaseBlock {
     id: Id;
 }
+export declare type Resolve<T> = (value: PromiseLike<T> | T | undefined) => void;
 export declare enum TransactionStatus {
     pending = 0,
     accepted = 1,
