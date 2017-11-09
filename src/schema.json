@@ -9,7 +9,7 @@
       }
     }
   },
-  "BlockInfo": { 
+  "Block": { 
     "properties": {
       "hash": {
         "type": "string"
