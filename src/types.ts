@@ -46,22 +46,25 @@ export enum TransactionStatus {
 
 export interface BaseTransaction {
   txid: string
-  to: string
-  from: string
   amount: BigNumber
   timeReceived: Date
   block: Identity<BlockInfo>
   status: TransactionStatus
 }
 
-export type NewTransaction = BaseTransaction
+export interface SingleTransactionProperties {
+  to: string
+  from: string
+}
 
-export interface Transaction extends BaseTransaction {
+export type NewSingleTransaction = BaseTransaction & SingleTransactionProperties
+
+export interface SingleTransaction extends NewSingleTransaction {
   id: Id
   currency: string
 }
 
-export interface ExternalTransaction extends BaseTransaction {
+export interface ExternalSingleTransaction extends BaseTransaction, SingleTransactionProperties {
   confirmations: number
 }
 
@@ -71,18 +74,18 @@ export interface ExternalBlock {
   timeMined: Date
 }
 
-export interface FullBlock extends ExternalBlock {
-  transactions: ExternalTransaction []
+export interface FullBlock<Transaction> extends ExternalBlock {
+  transactions: Transaction []
 }
 
-export interface ReadClient {
+export interface ReadClient<Transaction extends BaseTransaction> {
   getLastBlock(): Promise<BaseBlock>
 
   getTransactionStatus(txid: string): Promise<TransactionStatus>
 
   getNextBlockInfo(block: BlockInfo | undefined): Promise<BlockInfo>
 
-  getFullBlock(block: BlockInfo): Promise<FullBlock | undefined>
+  getFullBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>
 }
 
 export interface WriteClient {

@@ -34,19 +34,21 @@ export declare enum TransactionStatus {
 }
 export interface BaseTransaction {
     txid: string;
-    to: string;
-    from: string;
     amount: BigNumber;
     timeReceived: Date;
     block: Identity<BlockInfo>;
     status: TransactionStatus;
 }
-export declare type NewTransaction = BaseTransaction;
-export interface Transaction extends BaseTransaction {
+export interface SingleTransactionProperties {
+    to: string;
+    from: string;
+}
+export declare type NewSingleTransaction = BaseTransaction & SingleTransactionProperties;
+export interface SingleTransaction extends NewSingleTransaction {
     id: Id;
     currency: string;
 }
-export interface ExternalTransaction extends BaseTransaction {
+export interface ExternalSingleTransaction extends BaseTransaction, SingleTransactionProperties {
     confirmations: number;
 }
 export interface ExternalBlock {
@@ -54,14 +56,14 @@ export interface ExternalBlock {
     index: number;
     timeMined: Date;
 }
-export interface FullBlock extends ExternalBlock {
-    transactions: ExternalTransaction[];
+export interface FullBlock<Transaction> extends ExternalBlock {
+    transactions: Transaction[];
 }
-export interface ReadClient {
+export interface ReadClient<Transaction extends BaseTransaction> {
     getLastBlock(): Promise<BaseBlock>;
     getTransactionStatus(txid: string): Promise<TransactionStatus>;
     getNextBlockInfo(block: BlockInfo | undefined): Promise<BlockInfo>;
-    getFullBlock(block: BlockInfo): Promise<FullBlock | undefined>;
+    getFullBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>;
 }
 export interface WriteClient {
 }
