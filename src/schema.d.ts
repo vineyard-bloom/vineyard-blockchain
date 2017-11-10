@@ -3,6 +3,6 @@ export interface Trellis {
     properties: any;
 }
 export interface FullSchema {
-    Transaction: Trellis;
+    SingleTransaction: Trellis;
 }
 export declare function getFullBlockchainSchema(): FullSchema;
