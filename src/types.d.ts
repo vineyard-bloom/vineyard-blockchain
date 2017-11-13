@@ -56,8 +56,8 @@ export interface ExternalBlock {
     index: number;
     timeMined: Date;
 }
-export interface FullBlock<Transaction> extends ExternalBlock {
-    transactions: Transaction[];
+export interface FullBlock<ExternalTransaction> extends ExternalBlock {
+    transactions: ExternalTransaction[];
 }
 export interface ReadClient<Transaction extends BaseTransaction> {
     getLastBlock(): Promise<BaseBlock>;
