@@ -78,14 +78,14 @@ export interface FullBlock<ExternalTransaction> extends ExternalBlock {
   transactions: ExternalTransaction[]
 }
 
-export interface ReadClient<Transaction extends BaseTransaction> {
+export interface ReadClient<ExternalTransaction extends BaseTransaction> {
   getLastBlock(): Promise<BaseBlock>
 
   getTransactionStatus(txid: string): Promise<TransactionStatus>
 
   getNextBlockInfo(block: BlockInfo | undefined): Promise<BaseBlock>
   
-  getFullBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>
+  getFullBlock(block: BlockInfo): Promise<FullBlock<ExternalTransaction> | undefined>
 }
 
 export interface WriteClient {
