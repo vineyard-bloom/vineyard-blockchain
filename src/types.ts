@@ -84,7 +84,7 @@ export interface ReadClient<Transaction extends BaseTransaction> {
   getTransactionStatus(txid: string): Promise<TransactionStatus>
 
   getNextBlockInfo(block: BlockInfo | undefined): Promise<BaseBlock>
-
+  
   getFullBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>
 }
 
