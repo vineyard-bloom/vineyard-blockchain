@@ -83,9 +83,20 @@ export interface ReadClient<ExternalTransaction extends BaseTransaction> {
 
   getTransactionStatus(txid: string): Promise<TransactionStatus>
 
-  getNextBlockInfo(block: BlockInfo | undefined): Promise<BaseBlock>
+  getNextBlockInfo(block: BaseBlock | undefined): Promise<BaseBlock>
   
-  getFullBlock(block: BlockInfo): Promise<FullBlock<ExternalTransaction> | undefined>
+  getFullBlock(block: BaseBlock): Promise<FullBlock<ExternalTransaction> | undefined>
+}
+
+export interface BitcoinTransactionInfo {
+  outputIndex: number,
+  used: boolean
+}
+
+export type BitcoinTransaction = BaseTransaction & BitcoinTransactionInfo
+
+export interface BitcoinReadClient<Transaction extends BitcoinTransaction, T extends BaseTransaction> extends ReadClient<T> {
+  getFullBitcoinBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>
 }
 
 export interface WriteClient {
