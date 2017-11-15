@@ -11,7 +11,7 @@ export interface Currency {
 
 export interface NewAddress {
   address: string
-  currency: Identity<Currency>
+  currency: number
 }
 
 export interface Address extends NewAddress {
@@ -20,13 +20,13 @@ export interface Address extends NewAddress {
 
 export interface AddressRecord extends Address {
   address: string
-  currency: Identity<Currency>
+  currency: number
 }
 
 export interface BaseBlock {
   hash: string
   index: number
-  currency: Identity<Currency>
+  currency: number
   timeMined: Date
 }
 
