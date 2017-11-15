@@ -3,7 +3,7 @@ export declare type Id = string;
 export declare type Identity<T> = Id;
 export interface Currency {
     id: Id;
-    name: string;
+    name: number;
 }
 export interface NewAddress {
     address: string;

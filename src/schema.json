@@ -5,7 +5,7 @@
         "type": "string"
       },
       "currency": {
-        "type": "string"
+        "type": "int"
       }
     }
   },
@@ -18,7 +18,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "string"
+        "type": "int"
       },
       "timeMined": {
         "type": "datetime"
@@ -31,7 +31,7 @@
         "type": "int"
       },
       "currency": {
-        "type": "string"
+        "type": "int"
       },
       "txid": {
         "type": "string"
