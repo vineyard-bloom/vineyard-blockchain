@@ -61,7 +61,7 @@ export type NewSingleTransaction = BaseTransaction & SingleTransactionProperties
 
 export interface SingleTransaction extends NewSingleTransaction {
   id: Id
-  currency: string
+  currency: number
 }
 
 export interface ExternalSingleTransaction extends BaseTransaction, SingleTransactionProperties {

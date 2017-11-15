@@ -2,8 +2,8 @@ import { BigNumber } from 'bignumber.js';
 export declare type Id = string;
 export declare type Identity<T> = Id;
 export interface Currency {
-    id: Id;
-    name: number;
+    id: number;
+    name: string;
 }
 export interface NewAddress {
     address: string;
@@ -46,7 +46,7 @@ export interface SingleTransactionProperties {
 export declare type NewSingleTransaction = BaseTransaction & SingleTransactionProperties;
 export interface SingleTransaction extends NewSingleTransaction {
     id: Id;
-    currency: string;
+    currency: number;
 }
 export interface ExternalSingleTransaction extends BaseTransaction, SingleTransactionProperties {
     confirmations: number;
