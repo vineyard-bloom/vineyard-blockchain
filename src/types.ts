@@ -5,8 +5,8 @@ export type Id = string
 export type Identity<T> = Id
 
 export interface Currency {
-  id: Id
-  name: number
+  id: number
+  name: string
 }
 
 export interface NewAddress {
