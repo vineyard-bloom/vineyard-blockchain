@@ -53,8 +53,8 @@ export interface BaseTransaction {
 }
 
 export interface SingleTransactionProperties {
-  to: string
-  from: string
+  to: number
+  from: number
 }
 
 export type NewSingleTransaction = BaseTransaction & SingleTransactionProperties

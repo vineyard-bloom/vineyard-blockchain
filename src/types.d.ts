@@ -40,8 +40,8 @@ export interface BaseTransaction {
     status: TransactionStatus;
 }
 export interface SingleTransactionProperties {
-    to: string;
-    from: string;
+    to: number;
+    from: number;
 }
 export declare type NewSingleTransaction = BaseTransaction & SingleTransactionProperties;
 export interface SingleTransaction extends NewSingleTransaction {
