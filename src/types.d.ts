@@ -40,8 +40,8 @@ export interface BaseTransaction {
     status: TransactionStatus;
 }
 export interface SingleTransactionProperties {
-    to: number;
-    from: number;
+    to: string;
+    from: string;
 }
 export declare type NewSingleTransaction = BaseTransaction & SingleTransactionProperties;
 export interface SingleTransaction extends NewSingleTransaction {
@@ -62,7 +62,7 @@ export interface FullBlock<ExternalTransaction> extends ExternalBlock {
 export interface ReadClient<ExternalTransaction extends BaseTransaction> {
     getLastBlock(): Promise<BaseBlock>;
     getTransactionStatus(txid: string): Promise<TransactionStatus>;
-    getNextBlockInfo(block: BaseBlock | undefined): Promise<BaseBlock>;
+    getNextBlockInfo(block: BaseBlock | undefined): Promise<BaseBlock | undefined>;
     getFullBlock(block: BaseBlock): Promise<FullBlock<ExternalTransaction> | undefined>;
 }
 export interface BitcoinTransactionInfo {
