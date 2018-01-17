@@ -48,8 +48,8 @@
       "timeReceived": {
         "type": "datetime"
       },
-      "block": {
-        "type": "Block" 
+      "blockIndex": {
+        "type": "int"
       }
     }
   }
