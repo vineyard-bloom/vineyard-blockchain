@@ -6,4 +6,4 @@ var TransactionStatus;
     TransactionStatus[TransactionStatus["accepted"] = 1] = "accepted";
     TransactionStatus[TransactionStatus["rejected"] = 2] = "rejected";
 })(TransactionStatus = exports.TransactionStatus || (exports.TransactionStatus = {}));
-//# sourceMappingURL=old-types.js.map
+//# sourceMappingURL=types.js.map

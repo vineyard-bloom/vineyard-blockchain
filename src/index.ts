@@ -1,3 +1,3 @@
-export * from './old-types'
+export * from './types'
 export * from './blockchain'
 export * from './schema'
