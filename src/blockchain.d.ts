@@ -1,9 +1,8 @@
 import { BigNumber } from "bignumber.js";
-export declare module blockchain {
+export declare namespace blockchain {
     interface Block {
         hash: string;
         index: number;
-        currency: number;
         timeMined: Date;
     }
     enum TransactionStatus {
@@ -21,14 +20,11 @@ export declare module blockchain {
         to: string;
         from: string;
     }
-    interface FullBlock<Transaction extends BaseTransaction> extends Block {
-        transactions: Transaction[];
-    }
     interface ReadClient<Transaction extends BaseTransaction> {
         getBlockIndex(): Promise<number>;
         getLastBlock(): Promise<Block>;
         getTransactionStatus(txid: string): Promise<TransactionStatus>;
         getNextBlockInfo(block: Block | undefined): Promise<Block | undefined>;
-        getFullBlock(block: Block): Promise<FullBlock<Transaction> | undefined>;
+        getBlockTransactions(block: Block): Promise<Transaction[]>;
     }
 }

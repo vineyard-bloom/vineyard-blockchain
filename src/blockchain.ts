@@ -2,12 +2,11 @@ import {BigNumber} from "bignumber.js";
 
 // This file outlines a protocol that is intended to replace the previous types defined in vineyard-blockchain
 
-export module blockchain {
+export namespace blockchain {
 
   export interface Block {
     hash: string
     index: number
-    currency: number
     timeMined: Date
   }
 
@@ -29,10 +28,6 @@ export module blockchain {
     from: string
   }
 
-  export interface FullBlock<Transaction extends BaseTransaction> extends Block {
-    transactions: Transaction[]
-  }
-
   export interface ReadClient<Transaction extends BaseTransaction> {
 
     getBlockIndex(): Promise<number>
@@ -43,7 +38,7 @@ export module blockchain {
 
     getNextBlockInfo(block: Block | undefined): Promise<Block | undefined>
 
-    getFullBlock(block: Block): Promise<FullBlock<Transaction> | undefined>
+    getBlockTransactions(block: Block): Promise<Transaction[]>
   }
 
 }
