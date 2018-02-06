@@ -16,15 +16,19 @@ export declare namespace blockchain {
         timeReceived: Date;
         status: TransactionStatus;
     }
-    interface SingleTransaction extends BaseTransaction {
+    interface BlockTransaction extends BaseTransaction {
+        blockIndex: number;
+    }
+    interface SingleTransaction extends BlockTransaction {
         to: string;
         from: string;
     }
-    interface ReadClient<Transaction extends BaseTransaction> {
+    interface BlockClient<Transaction extends BlockTransaction> {
         getBlockIndex(): Promise<number>;
-        getLastBlock(): Promise<Block>;
-        getTransactionStatus(txid: string): Promise<TransactionStatus>;
-        getNextBlockInfo(block: Block | undefined): Promise<Block | undefined>;
+        getBlockInfo(index: number): Promise<Block | undefined>;
         getBlockTransactions(block: Block): Promise<Transaction[]>;
+    }
+    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockClient<Transaction> {
+        getTransactionStatus(txid: string): Promise<TransactionStatus>;
     }
 }

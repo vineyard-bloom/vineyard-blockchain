@@ -1,4 +1,4 @@
-import {BigNumber} from "bignumber.js";
+import { BigNumber } from "bignumber.js";
 
 // This file outlines a protocol that is intended to replace the previous types defined in vineyard-blockchain
 
@@ -23,22 +23,24 @@ export namespace blockchain {
     status: TransactionStatus
   }
 
-  export interface SingleTransaction extends BaseTransaction {
+  export interface BlockTransaction extends BaseTransaction {
+    blockIndex: number
+  }
+
+  export interface SingleTransaction extends BlockTransaction {
     to: string
     from: string
   }
 
-  export interface ReadClient<Transaction extends BaseTransaction> {
-
+  export interface BlockClient<Transaction extends BlockTransaction> {
     getBlockIndex(): Promise<number>
 
-    getLastBlock(): Promise<Block>
-
-    getTransactionStatus(txid: string): Promise<TransactionStatus>
-
-    getNextBlockInfo(block: Block | undefined): Promise<Block | undefined>
+    getBlockInfo(index: number): Promise<Block | undefined>
 
     getBlockTransactions(block: Block): Promise<Transaction[]>
   }
 
+  export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockClient<Transaction> {
+    getTransactionStatus(txid: string): Promise<TransactionStatus>
+  }
 }
