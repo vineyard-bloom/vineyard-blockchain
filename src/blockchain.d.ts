@@ -9,6 +9,7 @@ export declare namespace blockchain {
         pending = 0,
         accepted = 1,
         rejected = 2,
+        unknown = 3,
     }
     interface BaseTransaction {
         txid: string;
@@ -23,10 +24,14 @@ export declare namespace blockchain {
         to: string;
         from: string;
     }
+    interface FullBlock<Transaction extends BlockTransaction> extends Block {
+        transactions: Transaction[];
+    }
     interface BlockClient<Transaction extends BlockTransaction> {
         getBlockIndex(): Promise<number>;
         getBlockInfo(index: number): Promise<Block | undefined>;
-        getBlockTransactions(block: Block): Promise<Transaction[]>;
+        getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>;
+        getBlockTransactions(index: number): Promise<Transaction[]>;
     }
     interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockClient<Transaction> {
         getTransactionStatus(txid: string): Promise<TransactionStatus>;

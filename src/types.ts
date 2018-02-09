@@ -42,6 +42,7 @@ export enum TransactionStatus {
   pending = 0,
   accepted = 1,
   rejected = 2,
+  unknown = 3,
 }
 
 export interface BaseTransaction {

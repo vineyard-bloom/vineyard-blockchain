@@ -8,6 +8,7 @@ var blockchain;
         TransactionStatus[TransactionStatus["pending"] = 0] = "pending";
         TransactionStatus[TransactionStatus["accepted"] = 1] = "accepted";
         TransactionStatus[TransactionStatus["rejected"] = 2] = "rejected";
+        TransactionStatus[TransactionStatus["unknown"] = 3] = "unknown";
     })(TransactionStatus = blockchain.TransactionStatus || (blockchain.TransactionStatus = {}));
 })(blockchain = exports.blockchain || (exports.blockchain = {}));
 //# sourceMappingURL=blockchain.js.map
