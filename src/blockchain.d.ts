@@ -21,19 +21,27 @@ export declare namespace blockchain {
         blockIndex: number;
     }
     interface SingleTransaction extends BlockTransaction {
-        to: string;
-        from: string;
+        to?: string;
+        from?: string;
     }
     interface FullBlock<Transaction extends BlockTransaction> extends Block {
         transactions: Transaction[];
     }
-    interface BlockClient<Transaction extends BlockTransaction> {
+    interface BlockReader<Transaction extends BlockTransaction> {
         getBlockIndex(): Promise<number>;
         getBlockInfo(index: number): Promise<Block | undefined>;
         getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>;
         getBlockTransactions(index: number): Promise<Transaction[]>;
     }
-    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockClient<Transaction> {
+    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
         getTransactionStatus(txid: string): Promise<TransactionStatus>;
+    }
+    interface Contract {
+        address: string;
+        name: string;
+    }
+    interface ContractTransaction extends SingleTransaction {
+        gasUsed: number;
+        newContract?: Contract;
     }
 }
