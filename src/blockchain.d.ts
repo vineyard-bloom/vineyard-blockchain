@@ -36,12 +36,25 @@ export declare namespace blockchain {
     interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
         getTransactionStatus(txid: string): Promise<TransactionStatus>;
     }
+    enum ContractType {
+        unknown = 0,
+        token = 1,
+    }
     interface Contract {
         address: string;
-        name: string;
+        contractType: ContractType;
     }
+    interface TokenContract extends Contract {
+        contractType: ContractType.token;
+        name: string;
+        totalSupply: BigNumber | number;
+        decimals: number;
+        version: string;
+        symbol: string;
+    }
+    type AnyContract = Contract | TokenContract;
     interface ContractTransaction extends SingleTransaction {
         gasUsed: number;
-        newContract?: Contract;
+        newContract?: AnyContract;
     }
 }

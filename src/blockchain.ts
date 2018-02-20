@@ -51,13 +51,29 @@ export namespace blockchain {
     getTransactionStatus(txid: string): Promise<TransactionStatus>
   }
 
+  export enum ContractType {
+    unknown = 0,
+    token = 1,
+  }
+
   export interface Contract {
     address: string
-    name: string
+    contractType: ContractType
   }
+
+  export interface TokenContract extends Contract {
+    contractType: ContractType.token
+    name: string
+    totalSupply: BigNumber | number,
+    decimals: number,
+    version: string,
+    symbol: string
+  }
+
+  export type AnyContract = Contract | TokenContract
 
   export interface ContractTransaction extends SingleTransaction {
     gasUsed: number,
-    newContract?: Contract
+    newContract?: AnyContract,
   }
 }

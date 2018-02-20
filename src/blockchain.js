@@ -10,5 +10,10 @@ var blockchain;
         TransactionStatus[TransactionStatus["rejected"] = 2] = "rejected";
         TransactionStatus[TransactionStatus["unknown"] = 3] = "unknown";
     })(TransactionStatus = blockchain.TransactionStatus || (blockchain.TransactionStatus = {}));
+    var ContractType;
+    (function (ContractType) {
+        ContractType[ContractType["unknown"] = 0] = "unknown";
+        ContractType[ContractType["token"] = 1] = "token";
+    })(ContractType = blockchain.ContractType || (blockchain.ContractType = {}));
 })(blockchain = exports.blockchain || (exports.blockchain = {}));
 //# sourceMappingURL=blockchain.js.map

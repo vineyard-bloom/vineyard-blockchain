@@ -43,7 +43,7 @@
         "type": "string"
       }, 
       "amount": {
-        "type": "colossal" 
+        "type": "bignumber"
       },
       "timeReceived": {
         "type": "datetime"
