@@ -37,7 +37,7 @@ export interface BaseTransaction {
     txid: string;
     amount: BigNumber;
     timeReceived: Date;
-    block: Identity<BlockInfo>;
+    block: number;
     status: TransactionStatus;
 }
 export interface SingleTransactionProperties {
