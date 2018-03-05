@@ -19,9 +19,19 @@ export namespace blockchain {
 
   export interface BaseTransaction {
     txid: string
-    amount: BigNumber
     timeReceived: Date
-    status: TransactionStatus
+    status: TransactionStatus,
+    fee: BigNumber
+    nonce: number
+  }
+
+  export interface TokenTransfer {
+    to: string
+    from: string
+    amount: BigNumber,
+    txid: string,
+    contractAddress: string,
+    blockIndex: number
   }
 
   export interface BlockTransaction extends BaseTransaction {
@@ -29,6 +39,7 @@ export namespace blockchain {
   }
 
   export interface SingleTransaction extends BlockTransaction {
+    amount: BigNumber
     to?: string
     from?: string
   }
@@ -43,9 +54,11 @@ export namespace blockchain {
     getBlockInfo(index: number): Promise<Block | undefined>
 
     getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>
-
-    getBlockTransactions(index: number): Promise<Transaction[]>
   }
+
+  // export interface ContractReader {
+  //   getBlockContractTransfers(toBlock: number, fromBlock: number, watchAddresses: string[]): Promise<TokenTransfer[]>
+  // }
 
   export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
     getTransactionStatus(txid: string): Promise<TransactionStatus>
@@ -59,21 +72,35 @@ export namespace blockchain {
   export interface Contract {
     address: string
     contractType: ContractType
+    txid: string
   }
 
   export interface TokenContract extends Contract {
     contractType: ContractType.token
     name: string
-    totalSupply: BigNumber | number,
-    decimals: number,
-    version: string,
+    totalSupply: BigNumber | number
+    decimals: number
+    version: string
     symbol: string
   }
 
   export type AnyContract = Contract | TokenContract
 
-  export interface ContractTransaction extends SingleTransaction {
-    gasUsed: number,
-    newContract?: AnyContract,
+  export interface BaseEvent {
+    transactionHash: string
+    address: string
   }
+
+  export interface DecodedEvent extends BaseEvent {
+    args: any
+  }
+
+  export interface ContractTransaction extends SingleTransaction {
+    gasUsed: number
+    gasPrice: BigNumber
+    newContract?: AnyContract
+    events?: BaseEvent[]
+  }
+
+  export type EventDecoder = (event: BaseEvent) => DecodedEvent
 }

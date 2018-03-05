@@ -13,14 +13,24 @@ export declare namespace blockchain {
     }
     interface BaseTransaction {
         txid: string;
-        amount: BigNumber;
         timeReceived: Date;
         status: TransactionStatus;
+        fee: BigNumber;
+        nonce: number;
+    }
+    interface TokenTransfer {
+        to: string;
+        from: string;
+        amount: BigNumber;
+        txid: string;
+        contractAddress: string;
+        blockIndex: number;
     }
     interface BlockTransaction extends BaseTransaction {
         blockIndex: number;
     }
     interface SingleTransaction extends BlockTransaction {
+        amount: BigNumber;
         to?: string;
         from?: string;
     }
@@ -31,7 +41,6 @@ export declare namespace blockchain {
         getBlockIndex(): Promise<number>;
         getBlockInfo(index: number): Promise<Block | undefined>;
         getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>;
-        getBlockTransactions(index: number): Promise<Transaction[]>;
     }
     interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
         getTransactionStatus(txid: string): Promise<TransactionStatus>;
@@ -43,6 +52,7 @@ export declare namespace blockchain {
     interface Contract {
         address: string;
         contractType: ContractType;
+        txid: string;
     }
     interface TokenContract extends Contract {
         contractType: ContractType.token;
@@ -53,8 +63,14 @@ export declare namespace blockchain {
         symbol: string;
     }
     type AnyContract = Contract | TokenContract;
+    interface StateEvent {
+        args: any[];
+        transactionHash: string;
+    }
     interface ContractTransaction extends SingleTransaction {
         gasUsed: number;
+        gasPrice: BigNumber;
         newContract?: AnyContract;
+        events?: StateEvent[];
     }
 }
