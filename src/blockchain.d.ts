@@ -58,19 +58,23 @@ export declare namespace blockchain {
         contractType: ContractType.token;
         name: string;
         totalSupply: BigNumber | number;
-        decimals: number;
+        decimals: BigNumber;
         version: string;
         symbol: string;
     }
     type AnyContract = Contract | TokenContract;
-    interface StateEvent {
-        args: any[];
+    interface BaseEvent {
         transactionHash: string;
+        address: string;
+    }
+    interface DecodedEvent extends BaseEvent {
+        args: any;
     }
     interface ContractTransaction extends SingleTransaction {
         gasUsed: number;
         gasPrice: BigNumber;
         newContract?: AnyContract;
-        events?: StateEvent[];
+        events?: BaseEvent[];
     }
+    type EventDecoder = (event: BaseEvent) => DecodedEvent;
 }

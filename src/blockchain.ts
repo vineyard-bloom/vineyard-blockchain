@@ -79,7 +79,7 @@ export namespace blockchain {
     contractType: ContractType.token
     name: string
     totalSupply: BigNumber | number
-    decimals: number
+    decimals: BigNumber
     version: string
     symbol: string
   }
