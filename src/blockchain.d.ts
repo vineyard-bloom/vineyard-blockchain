@@ -34,11 +34,21 @@ export declare namespace blockchain {
         to?: string;
         from?: string;
     }
+    interface TransactionInput {
+        txid: string;
+    }
+    interface TransactionOutput {
+        address: string;
+    }
+    interface MultiTransaction extends BlockTransaction {
+        inputs: TransactionInput[];
+        outputs: TransactionOutput[];
+    }
     interface FullBlock<Transaction extends BlockTransaction> extends Block {
         transactions: Transaction[];
     }
     interface BlockReader<Transaction extends BlockTransaction> {
-        getBlockIndex(): Promise<number>;
+        getHeighestBlockIndex(): Promise<number>;
         getBlockInfo(index: number): Promise<Block | undefined>;
         getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>;
     }
