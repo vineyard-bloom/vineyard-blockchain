@@ -44,12 +44,36 @@ export namespace blockchain {
     from?: string
   }
 
+  export interface ScriptSig {
+    hex: string
+    asm: string
+  }
+
   export interface TransactionInput {
     txid: string
+    vout: number
+    scriptSig: ScriptSig
+    sequence: number,
+    address?: string
+    amount?: number
+    valueSat?: number
+    coinbase?: string
+  }
+
+  export interface ScriptPubKey {
+    hex: string
+    asm: string
+    type: string
   }
 
   export interface TransactionOutput {
     address: string
+    value: number
+    scriptPubKey: ScriptPubKey,
+    spentTxId?: string
+    spentHeight?: number
+    spentIndex?: number
+    reqSigs?: number
   }
 
   export interface MultiTransaction extends BlockTransaction {
