@@ -64,6 +64,7 @@ export namespace blockchain {
     hex: string
     asm: string
     type: string
+    addresses: string[]
   }
 
   export interface TransactionOutput {
@@ -85,12 +86,10 @@ export namespace blockchain {
     transactions: Transaction []
   }
 
-  export interface BlockReader<Transaction extends BlockTransaction> {
+  export interface BlockReader<Block> {
     getHeighestBlockIndex(): Promise<number>
 
-    getBlockInfo(index: number): Promise<Block | undefined>
-
-    getFullBlock(index: number): Promise<FullBlock<Transaction> | undefined>
+    getFullBlock(index: number): Promise<Block | undefined>
   }
 
   // export interface ContractReader {
