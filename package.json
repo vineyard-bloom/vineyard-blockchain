@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bignumber.js": "^6.0.0"
+    "bignumber.js": "^4.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
