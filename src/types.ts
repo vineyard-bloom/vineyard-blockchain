@@ -79,7 +79,7 @@ export interface FullBlock<ExternalTransaction> extends ExternalBlock {
   transactions: ExternalTransaction[]
 }
 
-export interface ReadClient<ExternalTransaction extends BaseTransaction> {
+export interface ReadClient<ExternalTransaction> {
 
   getBlockIndex(): Promise<number>
 
