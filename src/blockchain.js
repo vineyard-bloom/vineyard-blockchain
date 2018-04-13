@@ -16,4 +16,3 @@ var blockchain;
         ContractType[ContractType["token"] = 1] = "token";
     })(ContractType = blockchain.ContractType || (blockchain.ContractType = {}));
 })(blockchain = exports.blockchain || (exports.blockchain = {}));
-//# sourceMappingURL=blockchain.js.map

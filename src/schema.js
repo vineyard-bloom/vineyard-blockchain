@@ -4,4 +4,3 @@ function getFullBlockchainSchema() {
     return require('./schema.json');
 }
 exports.getFullBlockchainSchema = getFullBlockchainSchema;
-//# sourceMappingURL=schema.js.map

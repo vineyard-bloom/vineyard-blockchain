@@ -23,17 +23,16 @@ export interface BlockInfo extends BaseBlock {
     id: Id;
 }
 export declare type Resolve<T> = (value: PromiseLike<T> | T | undefined) => void;
-export declare type TransactionStatus = blockchain.TransactionStatus;
 export interface BaseTransaction {
     txid: string;
     amount: BigNumber;
     timeReceived: Date;
-    block: number;
-    status: TransactionStatus;
+    blockIndex: number;
+    status: blockchain.TransactionStatus;
 }
 export interface SingleTransactionProperties {
-    to: string;
-    from: string;
+    to?: string;
+    from?: string;
 }
 export declare type NewSingleTransaction = BaseTransaction & SingleTransactionProperties;
 export interface SingleTransaction extends NewSingleTransaction {
@@ -41,7 +40,6 @@ export interface SingleTransaction extends NewSingleTransaction {
     currency: number;
 }
 export interface ExternalSingleTransaction extends BaseTransaction, SingleTransactionProperties {
-    confirmations: number;
 }
 export interface ExternalBlock {
     hash: string;
@@ -54,7 +52,7 @@ export interface FullBlock<ExternalTransaction> extends ExternalBlock {
 export interface ReadClient<ExternalTransaction> {
     getBlockIndex(): Promise<number>;
     getLastBlock(): Promise<BaseBlock>;
-    getTransactionStatus(txid: string): Promise<TransactionStatus>;
+    getTransactionStatus(txid: string): Promise<blockchain.TransactionStatus>;
     getNextBlockInfo(block: BaseBlock | undefined): Promise<BaseBlock | undefined>;
     getFullBlock(block: BaseBlock): Promise<FullBlock<ExternalTransaction> | undefined>;
 }
