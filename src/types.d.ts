@@ -1,4 +1,5 @@
 import { BigNumber } from 'bignumber.js';
+import { blockchain } from "./blockchain";
 export declare type Id = string;
 export declare type Identity<T> = Id;
 export interface Currency {
@@ -16,23 +17,13 @@ export interface AddressRecord extends Address {
     address: string;
     currency: number;
 }
-export interface BaseBlock {
-    hash: string;
-    index: number;
-    currency: number;
-    timeMined: Date;
-}
+export declare type BaseBlock = blockchain.Block;
 export declare type NewBlock = BaseBlock;
 export interface BlockInfo extends BaseBlock {
     id: Id;
 }
 export declare type Resolve<T> = (value: PromiseLike<T> | T | undefined) => void;
-export declare enum TransactionStatus {
-    pending = 0,
-    accepted = 1,
-    rejected = 2,
-    unknown = 3,
-}
+export declare type TransactionStatus = blockchain.TransactionStatus;
 export interface BaseTransaction {
     txid: string;
     amount: BigNumber;
@@ -74,6 +65,4 @@ export interface BitcoinTransactionInfo {
 export declare type BitcoinTransaction = BaseTransaction & BitcoinTransactionInfo;
 export interface BitcoinReadClient<Transaction extends BitcoinTransaction, T extends BaseTransaction> extends ReadClient<T> {
     getFullBitcoinBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>;
-}
-export interface WriteClient {
 }
