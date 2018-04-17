@@ -4,6 +4,10 @@ import { BigNumber } from "bignumber.js"
 
 export namespace blockchain {
 
+  //
+  // Common Types
+  //
+
   export interface Block {
     hash: string
     index: number
@@ -25,24 +29,34 @@ export namespace blockchain {
     nonce: number
   }
 
-  export interface TokenTransfer {
-    to: string
-    from: string
-    amount: BigNumber,
-    txid: string,
-    contractAddress: string,
-    blockIndex: number
-  }
-
   export interface BlockTransaction extends BaseTransaction {
     blockIndex: number
   }
 
+  // Used for Ethereum transactions or simplified Bitcoin transactions
   export interface SingleTransaction extends BlockTransaction {
     amount: BigNumber
     to?: string
     from?: string
   }
+
+  export interface FullBlock<Transaction extends BlockTransaction> extends Block {
+    transactions: Transaction []
+  }
+
+  export interface BlockReader<Block> {
+    getHeighestBlockIndex(): Promise<number>
+
+    getFullBlock(index: number): Promise<Block | undefined>
+  }
+
+  export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
+    getTransactionStatus(txid: string): Promise<TransactionStatus>
+  }
+
+  //
+  // Bitcoin Specific Types
+  //
 
   export interface ScriptSig {
     hex: string
@@ -82,22 +96,17 @@ export namespace blockchain {
     outputs: TransactionOutput[]
   }
 
-  export interface FullBlock<Transaction extends BlockTransaction> extends Block {
-    transactions: Transaction []
-  }
+  //
+  // Ethereum Specific Types
+  //
 
-  export interface BlockReader<Block> {
-    getHeighestBlockIndex(): Promise<number>
-
-    getFullBlock(index: number): Promise<Block | undefined>
-  }
-
-  // export interface ContractReader {
-  //   getBlockContractTransfers(toBlock: number, fromBlock: number, watchAddresses: string[]): Promise<TokenTransfer[]>
-  // }
-
-  export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
-    getTransactionStatus(txid: string): Promise<TransactionStatus>
+  export interface TokenTransfer {
+    to: string
+    from: string
+    amount: BigNumber,
+    txid: string,
+    contractAddress: string,
+    blockIndex: number
   }
 
   export enum ContractType {

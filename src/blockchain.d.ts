@@ -18,14 +18,6 @@ export declare namespace blockchain {
         fee: BigNumber;
         nonce: number;
     }
-    interface TokenTransfer {
-        to: string;
-        from: string;
-        amount: BigNumber;
-        txid: string;
-        contractAddress: string;
-        blockIndex: number;
-    }
     interface BlockTransaction extends BaseTransaction {
         blockIndex: number;
     }
@@ -33,6 +25,16 @@ export declare namespace blockchain {
         amount: BigNumber;
         to?: string;
         from?: string;
+    }
+    interface FullBlock<Transaction extends BlockTransaction> extends Block {
+        transactions: Transaction[];
+    }
+    interface BlockReader<Block> {
+        getHeighestBlockIndex(): Promise<number>;
+        getFullBlock(index: number): Promise<Block | undefined>;
+    }
+    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
+        getTransactionStatus(txid: string): Promise<TransactionStatus>;
     }
     interface ScriptSig {
         hex: string;
@@ -67,15 +69,13 @@ export declare namespace blockchain {
         inputs: TransactionInput[];
         outputs: TransactionOutput[];
     }
-    interface FullBlock<Transaction extends BlockTransaction> extends Block {
-        transactions: Transaction[];
-    }
-    interface BlockReader<Block> {
-        getHeighestBlockIndex(): Promise<number>;
-        getFullBlock(index: number): Promise<Block | undefined>;
-    }
-    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
-        getTransactionStatus(txid: string): Promise<TransactionStatus>;
+    interface TokenTransfer {
+        to: string;
+        from: string;
+        amount: BigNumber;
+        txid: string;
+        contractAddress: string;
+        blockIndex: number;
     }
     enum ContractType {
         unknown = 0,
