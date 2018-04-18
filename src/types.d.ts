@@ -53,8 +53,8 @@ export interface ReadClient<ExternalTransaction> {
     getBlockIndex(): Promise<number>;
     getLastBlock(): Promise<BaseBlock>;
     getTransactionStatus(txid: string): Promise<blockchain.TransactionStatus>;
-    getNextBlockInfo(block: BaseBlock | undefined): Promise<BaseBlock | undefined>;
-    getFullBlock(block: BaseBlock): Promise<FullBlock<ExternalTransaction> | undefined>;
+    getNextBlockInfo(blockIndex: number | undefined): Promise<BaseBlock | undefined>;
+    getFullBlock(blockIndex: number): Promise<FullBlock<ExternalTransaction> | undefined>;
 }
 export interface BitcoinTransactionInfo {
     outputIndex: number;
