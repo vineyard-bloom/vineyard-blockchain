@@ -26,7 +26,7 @@ export namespace blockchain {
     timeReceived: Date
     status: TransactionStatus,
     fee: BigNumber
-    nonce: number
+    nonce: number 
   }
 
   export interface BlockTransaction extends BaseTransaction {
@@ -82,7 +82,7 @@ export namespace blockchain {
   }
 
   export interface TransactionOutput {
-    address: string
+    n: number
     value: number
     scriptPubKey: ScriptPubKey,
     spentTxId?: string

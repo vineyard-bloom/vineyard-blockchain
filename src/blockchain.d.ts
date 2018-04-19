@@ -57,7 +57,7 @@ export declare namespace blockchain {
         addresses: string[];
     }
     interface TransactionOutput {
-        address: string;
+        n: number;
         value: number;
         scriptPubKey: ScriptPubKey;
         spentTxId?: string;
