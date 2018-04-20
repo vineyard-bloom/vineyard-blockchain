@@ -80,6 +80,7 @@ export namespace blockchain {
 
   export interface TransactionOutput {
     n: number
+    address: string
     value: number
     valueSat: BigNumber
     scriptPubKey: ScriptPubKey,

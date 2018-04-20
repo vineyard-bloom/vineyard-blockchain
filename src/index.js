@@ -5,5 +5,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./blockchain"));
 __export(require("./schema"));
-__export(require("./bitcoin-utility"));
 //# sourceMappingURL=index.js.map
