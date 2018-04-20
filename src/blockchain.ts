@@ -80,7 +80,8 @@ export namespace blockchain {
 
   export interface TransactionOutput {
     n: number
-    amount: number
+    value: number
+    valueSat: BigNumber
     scriptPubKey: ScriptPubKey,
     reqSigs?: number
   }

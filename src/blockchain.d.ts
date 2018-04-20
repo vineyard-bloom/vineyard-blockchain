@@ -55,7 +55,8 @@ export declare namespace blockchain {
     }
     interface TransactionOutput {
         n: number;
-        amount: number;
+        value: number;
+        valueSat: BigNumber;
         scriptPubKey: ScriptPubKey;
         reqSigs?: number;
     }
