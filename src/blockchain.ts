@@ -68,9 +68,6 @@ export namespace blockchain {
     vout: number
     scriptSig: ScriptSig
     sequence: number,
-    address?: string
-    amount?: number
-    valueSat?: number
     coinbase?: string
   }
 
@@ -83,11 +80,8 @@ export namespace blockchain {
 
   export interface TransactionOutput {
     n: number
-    value: number
+    amount: number
     scriptPubKey: ScriptPubKey,
-    spentTxId?: string
-    spentHeight?: number
-    spentIndex?: number
     reqSigs?: number
   }
 

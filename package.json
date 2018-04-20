@@ -11,7 +11,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bignumber.js": "^4.0.0"
+    "@types/bitcoinjs-lib": "^3.3.3",
+    "bignumber.js": "^4.0.0",
+    "bitcoinjs-lib": "^3.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
