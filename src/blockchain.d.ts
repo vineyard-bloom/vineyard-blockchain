@@ -1,4 +1,5 @@
 import { BigNumber } from "bignumber.js";
+import { Transaction } from "bitcoinjs-lib";
 export declare namespace blockchain {
     interface Block {
         hash: string;
@@ -103,6 +104,13 @@ export declare namespace blockchain {
         gasPrice: BigNumber;
         newContract?: AnyContract;
         events?: BaseEvent[];
+        internalTransactions?: InternalTransaction[];
+    }
+    interface InternalTransaction {
+        to: string;
+        from: string;
+        amount: BigNumber;
+        transaction: Transaction;
     }
     type EventDecoder = (event: BaseEvent) => DecodedEvent;
 }
