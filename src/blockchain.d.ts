@@ -1,5 +1,4 @@
 import { BigNumber } from "bignumber.js";
-import { Transaction } from "bitcoinjs-lib";
 export declare namespace blockchain {
     interface Block {
         hash: string;
@@ -110,7 +109,7 @@ export declare namespace blockchain {
         to: string;
         from: string;
         amount: BigNumber;
-        transaction: Transaction;
+        transaction: BaseTransaction;
     }
     type EventDecoder = (event: BaseEvent) => DecodedEvent;
 }

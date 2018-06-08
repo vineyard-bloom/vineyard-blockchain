@@ -149,7 +149,7 @@ export namespace blockchain {
     to: string
     from: string
     amount: BigNumber
-    transaction: Transaction
+    transaction: BaseTransaction
   }
 
   export type EventDecoder = (event: BaseEvent) => DecodedEvent
