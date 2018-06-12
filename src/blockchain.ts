@@ -144,4 +144,7 @@ export namespace blockchain {
   }
 
   export type EventDecoder = (event: BaseEvent) => DecodedEvent
+  
+  // Returns an array of any invalid blocks that were found
+  export type BlockValidator = (block: any) => Promise<any[]>
 }

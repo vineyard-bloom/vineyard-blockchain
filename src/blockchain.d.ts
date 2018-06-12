@@ -105,4 +105,5 @@ export declare namespace blockchain {
         events?: BaseEvent[];
     }
     type EventDecoder = (event: BaseEvent) => DecodedEvent;
+    type BlockValidator = (block: any) => Promise<any[]>;
 }
