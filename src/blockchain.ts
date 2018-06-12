@@ -1,4 +1,5 @@
 import { BigNumber } from "bignumber.js"
+import { Transaction } from "bitcoinjs-lib";
 
 // This file outlines a protocol that is intended to replace the previous types defined in vineyard-blockchain
 
@@ -141,6 +142,14 @@ export namespace blockchain {
     gasPrice: BigNumber
     newContract?: AnyContract
     events?: BaseEvent[]
+    internalTransactions?: InternalTransaction[]
+  }
+
+  export interface InternalTransaction {
+    to: string
+    from: string
+    amount: BigNumber
+    transaction: BaseTransaction
   }
 
   export type EventDecoder = (event: BaseEvent) => DecodedEvent

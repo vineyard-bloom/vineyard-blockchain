@@ -103,6 +103,13 @@ export declare namespace blockchain {
         gasPrice: BigNumber;
         newContract?: AnyContract;
         events?: BaseEvent[];
+        internalTransactions?: InternalTransaction[];
+    }
+    interface InternalTransaction {
+        to: string;
+        from: string;
+        amount: BigNumber;
+        transaction: BaseTransaction;
     }
     type EventDecoder = (event: BaseEvent) => DecodedEvent;
     type BlockValidator = (block: any) => Promise<any[]>;
