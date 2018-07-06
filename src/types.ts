@@ -1,3 +1,5 @@
+// *** This file is deprecated in favor of blockchain.ts *** //
+
 import { BigNumber } from 'bignumber.js'
 import { blockchain } from "./blockchain";
 

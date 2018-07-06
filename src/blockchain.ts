@@ -1,5 +1,4 @@
 import { BigNumber } from "bignumber.js"
-import { Transaction } from "bitcoinjs-lib";
 
 // This file outlines a protocol that is intended to replace the previous types defined in vineyard-blockchain
 
