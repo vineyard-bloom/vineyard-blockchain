@@ -3,7 +3,11 @@ export declare namespace blockchain {
     interface Block {
         hash: string;
         index: number;
+        number: number;
+        coinbase: string;
         timeMined: Date;
+        parentHash: string;
+        difficulty: string;
     }
     enum TransactionStatus {
         pending = 0,
@@ -26,15 +30,13 @@ export declare namespace blockchain {
         to?: string;
         from?: string;
     }
-    interface FullBlock<Transaction extends BlockTransaction> extends Block {
+    interface BlockBundle<Block, Transaction> {
+        block: Block;
         transactions: Transaction[];
     }
-    interface BlockReader<Block> {
+    interface BlockReader<Block, Transaction> {
         getHeighestBlockIndex(): Promise<number>;
-        getFullBlock(index: number): Promise<Block | undefined>;
-    }
-    interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
-        getTransactionStatus(txid: string): Promise<TransactionStatus>;
+        getBlockBundle(index: number): Promise<BlockBundle<Block, Transaction>>;
     }
     interface ScriptSig {
         hex: string;
@@ -64,6 +66,20 @@ export declare namespace blockchain {
     interface MultiTransaction extends BlockTransaction {
         inputs: TransactionInput[];
         outputs: TransactionOutput[];
+    }
+    interface EthereumBlock extends Block {
+        uncleHash: string;
+        stateRoot: string;
+        transactionsTrie: string;
+        receiptTrie: string;
+        bloom: string;
+        gasLimit: number;
+        gasUsed: number;
+        timestamp: number;
+        extraData: string;
+        mixHash: string;
+        nonce: number;
+        rlp: string;
     }
     interface TokenTransfer {
         to: string;

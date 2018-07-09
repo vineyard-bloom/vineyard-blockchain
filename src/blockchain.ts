@@ -44,20 +44,20 @@ export namespace blockchain {
     from?: string
   }
 
-  export interface BlockBundle {
+  export interface BlockBundle<Block, Transaction> {
     block: Block
     transactions: Transaction []
   }
 
-  export interface BlockReader<Block> {
+  export interface BlockReader<Block, Transaction> {
     getHeighestBlockIndex(): Promise<number>
 
-    getFullBlock(index: number): Promise<Block | undefined>
+    getBlockBundle(index: number): Promise<BlockBundle<Block, Transaction>>
   }
 
-  export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
-    getTransactionStatus(txid: string): Promise<TransactionStatus>
-  }
+  // export interface ReadClientWithStatus<Transaction extends BlockTransaction> extends BlockReader<Transaction> {
+  //   getTransactionStatus(txid: string): Promise<TransactionStatus>
+  // }
 
   //
   // Bitcoin Specific Types
@@ -113,6 +113,7 @@ export namespace blockchain {
     extraData: string
     mixHash: string
     nonce: number
+    rlp: string
   }
 
   export interface TokenTransfer {
