@@ -11,7 +11,11 @@ export namespace blockchain {
   export interface Block {
     hash: string
     index: number
+    number: number
+    coinbase: string
     timeMined: Date
+    parentHash: string
+    difficulty: string
   }
 
   export enum TransactionStatus {
@@ -40,7 +44,8 @@ export namespace blockchain {
     from?: string
   }
 
-  export interface FullBlock<Transaction extends BlockTransaction> extends Block {
+  export interface BlockBundle {
+    block: Block
     transactions: Transaction []
   }
 
@@ -95,6 +100,20 @@ export namespace blockchain {
   //
   // Ethereum Specific Types
   //
+
+  export interface EthereumBlock extends Block {
+    uncleHash: string
+    stateRoot: string
+    transactionsTrie: string
+    receiptTrie: string
+    bloom: string
+    gasLimit: number
+    gasUsed: number
+    timestamp: number
+    extraData: string
+    mixHash: string
+    nonce: number
+  }
 
   export interface TokenTransfer {
     to: string
