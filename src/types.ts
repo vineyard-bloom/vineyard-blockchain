@@ -94,3 +94,16 @@ export type BitcoinTransaction = BaseTransaction & BitcoinTransactionInfo
 export interface BitcoinReadClient<Transaction extends BitcoinTransaction, T extends BaseTransaction> extends ReadClient<T> {
   getFullBitcoinBlock(block: BlockInfo): Promise<FullBlock<Transaction> | undefined>
 }
+
+export interface StructLog {
+  pc: number
+  op: string
+  gas: number
+  gasCost: number
+  memory: string
+  memorySize?: number
+  stack: string
+  storage: string
+  depth: number
+  err?: string
+}
